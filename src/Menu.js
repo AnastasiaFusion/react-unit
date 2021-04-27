@@ -10,20 +10,13 @@ class Menu extends React.Component {
     this.state = {
       dropMenuOptions: [],
       menuOptions: [],
+      width: 0,
     }
   }
 
-  componentDidMount() {
-    this.calculateOptions();
-    window.addEventListener('resize', this.calculateOptions);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.calculateOptions);
-  }
 
   calculateOptions = () => {
-    const width = this.menuBlock.current.clientWidth;
+    const width = window.innerWidth / 2;;
     const buttonSizes = items.map(item => item.minWidth + 30);
     const isMenuFull = width >= fullMenuSize;
     let counter = isMenuFull ? 0 : 110 + padding * 2;
@@ -45,6 +38,18 @@ class Menu extends React.Component {
       menuOptions,
     })
   }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.calculateOptions);
+    this.setState({
+      width: window.innerWidth / 2,
+    }, this.calculateOptions)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.calculateOptions);
+  }
+
 
   render() {
     const {menuOptions, dropMenuOptions } = this.state;

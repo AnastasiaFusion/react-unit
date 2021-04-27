@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuItem component should render MenuItem component 1`] = `
+<styled.div
+  minWidth={48}
+  padding={15}
+>
+  Home
+</styled.div>
+`;
